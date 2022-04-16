@@ -7,6 +7,15 @@ test('Must list all users', () => {
         .then((res) => {
             expect(res.status).toBe(200);
             expect(res.body).toHaveLength(1);
-            expect(res.body[0]).toHaveProperty('name', 'Myltiane', 'email', 'myltiano@gmail.com');
+            expect(res.body[0]).toHaveProperty('name', 'Myltiane', );
         })
 });
+
+test('Must enter user successfully', () => { 
+    return request(app).post('/users')
+        .send({ name: 'Myltiane', email: 'myltiano@gmail.com'})
+        .then((res) => {
+            expect(res.status).toBe(201);
+            expect(res.body.name).toBe('Myltiane');
+        });
+})

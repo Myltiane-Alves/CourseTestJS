@@ -1,14 +1,15 @@
+const consign = require('consign');
+
 const app = require('express')();
+
+consign({ cwd: 'src', verbose: false })
+    .include('src/config/middlewares.js')
+    .then('src/routes')
+    .then('src/config/routes.js')
+    .into(app);
 
 app.get('/', (req, res) => {
     res.status(200).send()
-});
-
-app.get('/users', (req, res) => {
-    const users = [ 
-        {name: 'Myltiane', email: 'myltiano@gmail.com'}
-    ]
-    res.status(200).json(users)
 });
 
 module.exports = app;
