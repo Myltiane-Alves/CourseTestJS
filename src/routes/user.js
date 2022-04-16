@@ -1,10 +1,8 @@
-module.exports = () => {
-
+module.exports = (app) => {
     const findAll = (req, res) => {
-        const users = [ 
-            {name: 'Myltiane', email: 'myltiano@gmail.com'}
-        ]
-        res.status(200).json(users)
+        app.db('users').select()
+            .then(rsult => res.status(200).json(rsult))
+       
     };
     
     const create = (req, res)=> {
